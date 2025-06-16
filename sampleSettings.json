@@ -1,12 +1,11 @@
 {
   "EmailConfig": {
     "Provider": "Smtp",
-    "From": "noreply@domain.com",
-    "DefaultIsHtml": true,
     "Smtp": {
       "Host": "smtp.gmail.com",
       "Port": 587,
       "EnableSsl": true,
+      "From": "noreply@domain.com",
       "Username": "test@gmail.com",
       "Password": "supersecret",
       "UseDefaultCredentials": false
