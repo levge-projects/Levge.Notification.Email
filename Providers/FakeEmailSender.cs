@@ -35,7 +35,7 @@ namespace Levge.Notification.Email.Providers
             }
             catch (Exception ex)
             {
-                _logger.LogException(ex, "FakeEmailSender.SendAsync");
+                _logger.LogError(ex, "FakeEmailSender.SendAsync");
                 throw new LevgeException("Fake email sending failed.", ex);
             }
         }
