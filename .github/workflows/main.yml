@@ -21,8 +21,11 @@ jobs:
       - name: Restore Dependencies
         run: dotnet restore
 
-      - name: Build & Pack
-        run: dotnet pack --configuration Release
+      - name: Build Project
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Pack NuGet Package
+        run: dotnet pack --configuration Release --no-build
 
       - name: Push to NuGet.org
         run: dotnet nuget push **/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
