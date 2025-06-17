@@ -8,6 +8,7 @@ namespace Levge.Notification.Email.Models
         public List<string>? Cc { get; set; }
         public List<string>? Bcc { get; set; }
 
+        public string? From { get; set; }
         public string Subject { get; set; } = null!;
         public string Body { get; set; } = null!;
         public bool IsHtml { get; set; } = true;
