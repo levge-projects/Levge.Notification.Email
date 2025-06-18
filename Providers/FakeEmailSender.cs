@@ -6,15 +6,23 @@ using Microsoft.Extensions.Logging;
 
 namespace Levge.Notification.Email.Providers
 {
+    /// <summary>
+    /// Provides a fake email sender for testing and development purposes.
+    /// </summary>
     internal class FakeEmailSender : IEmailSender
     {
         private readonly ILogger<FakeEmailSender> _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FakeEmailSender"/> class.
+        /// </summary>
+        /// <param name="logger">The logger instance.</param>
         public FakeEmailSender(ILogger<FakeEmailSender> logger)
         {
             _logger = logger;
         }
 
+        /// <inheritdoc/>
         public Task SendAsync(EmailMessage message, CancellationToken cancellationToken = default, bool fireAndForget = false)
         {
             if (fireAndForget)
@@ -26,6 +34,10 @@ namespace Levge.Notification.Email.Providers
             return SendInternalAsync(message);
         }
 
+        /// <summary>
+        /// Simulates sending an email message for testing purposes.
+        /// </summary>
+        /// <param name="message">The email message to simulate sending.</param>
         private Task SendInternalAsync(EmailMessage message)
         {
             try

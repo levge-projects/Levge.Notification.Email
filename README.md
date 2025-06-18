@@ -1,52 +1,40 @@
+[🇹🇷 Türkçe dokümantasyon için buraya tıklayın.](README.tr.md)
+
 # Levge.Notification.Email
 
 [![Publish NuGet Package](https://github.com/levge-projects/Levge.Notification.Email/actions/workflows/main.yml/badge.svg)](https://github.com/levge-projects/Levge.Notification.Email/actions/workflows/main.yml)
 [![NuGet](https://img.shields.io/nuget/v/Levge.Notification.Email.svg)](https://www.nuget.org/packages/Levge.Notification.Email)
 
-Extensible email notification library for .NET 8 with support for SMTP, SendGrid, FakeProvider and custom implementations. Clean, DI-friendly, provider-based architecture.
+Extensible, provider-based email notification library for .NET 8. Supports SMTP and Fake providers out of the box, with easy DI integration and custom provider extensibility.
 
 ---
 
 ## 📦 Installation
-
-```bash
 dotnet add package Levge.Notification.Email
-```
-
 ---
 
 ## ⚙️ Configuration
 
 Add your email configuration in `appsettings.json`:
-
-```json
-  "EmailConfig": {
-    "Provider": "Smtp",
-    "Smtp": {
-      "Host": "smtp.gmail.com",
-      "Port": 587,
-      "EnableSsl": true,
-      "From": "noreply@domain.com",
-      "Username": "test@gmail.com",
-      "Password": "supersecret",
-      "UseDefaultCredentials": false
-    }
+"EmailConfig": {
+  "Provider": "Smtp",
+  "Smtp": {
+    "Host": "smtp.gmail.com",
+    "Port": 587,
+    "EnableSsl": true,
+    "From": "noreply@domain.com",
+    "Username": "test@gmail.com",
+    "Password": "supersecret",
+    "UseDefaultCredentials": false
   }
-```
-
+}
 ---
 
-## 🔧 Setup in `Program.cs`
-
-```csharp
+## 🔧 Dependency Injection Setup
 builder.Services.AddEmailNotification(builder.Configuration);
-```
-
 ---
 
-## 📤 Usage
-
-```csharp
+## 📤 Usage Example
 public class WelcomeService
 {
     private readonly IEmailSender _emailSender;
@@ -68,19 +56,17 @@ public class WelcomeService
         });
     }
 }
-```
-
 ---
 
 ## 🧩 Providers
 
-| Provider   | Status       |
-|------------|--------------|
-| `Smtp`     | ✅ Supported |
-| `Fake`     | ✅ Supported |
+| Provider   | Status         |
+|------------|----------------|
+| `Smtp`     | ✅ Supported   |
+| `Fake`     | ✅ Supported   |
 | `SendGrid` | 🔜 Coming soon |
 
-Custom providers can be added by implementing `IEmailSender`.
+You can add custom providers by implementing `IEmailSender`.
 
 ---
 

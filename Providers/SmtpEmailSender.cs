@@ -9,17 +9,26 @@ using System.Net.Mail;
 
 namespace Levge.Notification.Email.Providers
 {
+    /// <summary>
+    /// Provides functionality to send emails using SMTP protocol.
+    /// </summary>
     internal class SmtpEmailSender : IEmailSender
     {
         private readonly EmailConfig _config;
         private readonly ILogger<SmtpEmailSender> _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SmtpEmailSender"/> class.
+        /// </summary>
+        /// <param name="options">The email configuration options.</param>
+        /// <param name="logger">The logger instance.</param>
         public SmtpEmailSender(IOptions<EmailConfig> options, ILogger<SmtpEmailSender> logger)
         {
             _config = options.Value;
             _logger = logger;
         }
 
+        /// <inheritdoc/>
         public Task SendAsync(EmailMessage message, CancellationToken cancellationToken = default, bool fireAndForget = false)
         {
             if (fireAndForget)
@@ -31,6 +40,11 @@ namespace Levge.Notification.Email.Providers
             return SendInternalAsync(message, cancellationToken);
         }
 
+        /// <summary>
+        /// Sends the email message using SMTP.
+        /// </summary>
+        /// <param name="message">The email message to send.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
         private async Task SendInternalAsync(EmailMessage message, CancellationToken cancellationToken)
         {
             try
